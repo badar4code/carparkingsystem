@@ -21,5 +21,6 @@ public class Payment {
     private BigDecimal amount;
     private LocalDateTime transactionDate;
     private String referenceNumber;
-//    private ParkingSession parkingSession;
+    @OneToOne(cascade = CascadeType.ALL)
+    private ParkingSession parkingSession;
 }
