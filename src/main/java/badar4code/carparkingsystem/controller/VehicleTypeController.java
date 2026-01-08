@@ -12,14 +12,11 @@ import org.hibernate.service.spi.InjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/vehicle-types")
-public class VehicleTypeController{
+public class VehicleTypeController extends BaseController{
 
     private final VehicleTypeService vehicleTypeService;
 
@@ -28,9 +25,13 @@ public class VehicleTypeController{
         this.vehicleTypeService = vehicleTypeService;
     }
 
-    @RequestMapping(value = "/get-by-id", method =  RequestMethod.GET)
-    public ResponseEntity<?> getVehicleTypeById(Long id) {
-        final ApiResponse<VehicleTypeDto> vehicleTypeDto = vehicleTypeService.findById(id);
-        return ResponseEntity.status(HttpStatus.OK).body(vehicleTypeDto);
+    @GetMapping("/get-by-id")
+    public ResponseEntity<?> getById(@RequestParam Long id) {
+        return createResponse(vehicleTypeService.findById(id));
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<?> create(@RequestBody VehicleTypeDto dto) {
+        return createResponse(vehicleTypeService.save(dto));
     }
 }
