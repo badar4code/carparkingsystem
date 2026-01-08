@@ -19,12 +19,12 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ApiResponse<Void>> handleNotFound(ResourceNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body(responseHandler.failure("SEARCH", ex.getMessage()));
+                .body(responseHandler.failure(ex.getMessage()));
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiResponse<Void>> handleGeneric(Exception ex) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(responseHandler.failure("GENERAL", "Unexpected error occurred"));
+                .body(responseHandler.failure("Unexpected error occurred"));
     }
 }

@@ -28,8 +28,9 @@ public class VehicleTypeController{
         this.vehicleTypeService = vehicleTypeService;
     }
 
-    public ResponseEntity<ApiResponse<VehicleTypeDto>> getVehicleTypeById(Long id) {
+    @RequestMapping(value = "/get-by-id", method =  RequestMethod.GET)
+    public ResponseEntity<?> getVehicleTypeById(Long id) {
         final ApiResponse<VehicleTypeDto> vehicleTypeDto = vehicleTypeService.findById(id);
-        return ResponseEntity.status(200).body(vehicleTypeDto);
+        return ResponseEntity.status(HttpStatus.OK).body(vehicleTypeDto);
     }
 }

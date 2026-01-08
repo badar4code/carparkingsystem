@@ -29,8 +29,8 @@ public class VehicleTypeService {
         VehicleType vehicleType = vehicleTypeRepo.findById(id).orElse(null);
         if (vehicleType != null) {
             VehicleTypeDto dto = genericMapper.map(vehicleType, VehicleTypeDto.class);
-            return new ApiResponse<>("", "", "", dto);
+            return new ApiResponse<>("", "successful", dto);
         }
-        return new ApiResponse<>("", "not found", "", null);
+        return new ApiResponse<>("", "not found", null);
     }
 }
