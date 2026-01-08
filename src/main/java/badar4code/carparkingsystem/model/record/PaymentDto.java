@@ -1,6 +1,6 @@
 package badar4code.carparkingsystem.model.record;
 
-import badar4code.carparkingsystem.enums.PaymentType;
+import badar4code.carparkingsystem.constants.PaymentType;
 import jakarta.validation.constraints.NotNull;
 
 import java.io.Serializable;

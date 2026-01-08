@@ -1,6 +1,6 @@
 package badar4code.carparkingsystem.model.entity;
 
-import badar4code.carparkingsystem.enums.PaymentType;
+import badar4code.carparkingsystem.constants.PaymentType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
