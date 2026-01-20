@@ -26,8 +26,8 @@ public class VehicleTypeController extends BaseController{
     }
 
     @GetMapping("/get-by-id")
-    public ResponseEntity<?> getById(@RequestParam Long id) {
-        return createResponse(vehicleTypeService.findById(id));
+    public ResponseEntity<?> getById(@RequestParam String code) {
+        return createResponse(vehicleTypeService.findByCode(code));
     }
 
     @PostMapping("/create")
@@ -36,7 +36,7 @@ public class VehicleTypeController extends BaseController{
     }
 
     @DeleteMapping("/remove")
-    public ResponseEntity<?> remove(@RequestParam Long id) {
-        return createResponse(vehicleTypeService.remove(id));
+    public ResponseEntity<?> remove(@RequestParam String code) {
+        return createResponse(vehicleTypeService.remove(code));
     }
 }

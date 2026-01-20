@@ -33,8 +33,8 @@ public class VehicleTypeService extends BaseController {
         this.responseHandler = responseHandler;
     }
 
-    public ApiResponse<VehicleTypeDto> findById(Long id) {
-        Optional<VehicleType> result = vehicleTypeRepo.findById(id);
+    public ApiResponse<VehicleTypeDto> findByCode(String code) {
+        Optional<VehicleType> result = vehicleTypeRepo.findByCode(code);
 
         if (result.isPresent()) {
             return responseHandler.success(genericMapper.map(result.get(), VehicleTypeDto.class), "Found");
@@ -43,13 +43,22 @@ public class VehicleTypeService extends BaseController {
         }
     }
 
-    public ApiResponse<VehicleTypeDto> save(VehicleTypeDto dto) {
+    public ApiResponse<Boolean> save(VehicleTypeDto dto) {
         if (vehicleTypeRepo.existsVehicleTypesByCode(dto.code())) {
             return responseHandler.badRequest("Code already exists!");
         }
         VehicleType vehicleType = genericMapper.map(dto, VehicleType.class);
         VehicleType saved = vehicleTypeRepo.save(vehicleType);
-        VehicleTypeDto vehicleTypeDto = genericMapper.map(saved, VehicleTypeDto.class);
-        return responseHandler.success(vehicleTypeDto, "Saved");
+        return responseHandler.success(true, "Saved");
+    }
+
+    public ApiResponse<Boolean> remove(String code) {
+        Optional<VehicleType> result = vehicleTypeRepo.findByCode(code);
+        if (vehicleTypeRepo.existsVehicleTypesByCode(code)) {
+            return responseHandler.badRequest("Code already exists!");
+        }
+        VehicleType vehicleType = genericMapper.map(result, VehicleType.class);
+        VehicleType saved = vehicleTypeRepo.save(vehicleType);
+        return responseHandler.success(true, "Saved");
     }
 }
