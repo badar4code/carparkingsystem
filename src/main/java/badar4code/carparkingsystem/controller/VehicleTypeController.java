@@ -34,4 +34,9 @@ public class VehicleTypeController extends BaseController{
     public ResponseEntity<?> create(@RequestBody VehicleTypeDto dto) {
         return createResponse(vehicleTypeService.save(dto));
     }
+
+    @DeleteMapping("/remove")
+    public ResponseEntity<?> remove(@RequestParam Long id) {
+        return createResponse(vehicleTypeService.remove(id));
+    }
 }

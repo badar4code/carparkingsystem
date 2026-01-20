@@ -6,7 +6,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 
-public record ParkingSessionDto(Long id,
+public record ParkingSessionDto(
                                 VehicleDto plateNumber,
                                 LocalDateTime entryTimeDate,
                                 LocalDateTime exitTimeDate,

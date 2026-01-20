@@ -7,7 +7,6 @@ import java.io.Serializable;
 
 
 public record SpotDto(
-        Long id,
         @NotBlank(message = "Spot number is required")
         String number,
         @NotBlank(message = "Floor level is required")

@@ -7,7 +7,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 public record RateDto(
-        Long id,
         @NotBlank String rateName,
         BigDecimal unitPrice,
         UnitType unitType
