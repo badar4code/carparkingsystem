@@ -1,6 +1,7 @@
 package badar4code.carparkingsystem.helper;
 
-import org.modelmapper.ModelMapper;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -9,26 +10,20 @@ import java.util.stream.Collectors;
 @Component
 public class GenericMapper {
 
+    private final ObjectMapper objectMapper;
 
-    private final ModelMapper modelMapper;
-
-
-    public GenericMapper(ModelMapper modelMapper) {
-        this.modelMapper = modelMapper;
+    public GenericMapper(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
+        this.objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
-    public <S, T> T map(S source, Class<T> targetClass) {
-        return modelMapper.map(source, targetClass);
+    public <T> T map(Object source, Class<T> targetClass) {
+        return objectMapper.convertValue(source, targetClass);
     }
 
     public <S, T> List<T> mapList(List<S> sourceList, Class<T> targetClass) {
         return sourceList.stream()
-                .map(source -> modelMapper.map(source, targetClass))
+                .map(source -> objectMapper.convertValue(source, targetClass))
                 .collect(Collectors.toList());
-    }
-
-    public <S, T> T map(S source, T target) {
-        modelMapper.map(source, target);
-        return target;
     }
 }
