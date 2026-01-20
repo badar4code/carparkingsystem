@@ -1,7 +1,6 @@
 package badar4code.carparkingsystem.config;
 
-import org.modelmapper.ModelMapper;
-import org.modelmapper.record.RecordModule;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -9,9 +8,8 @@ import org.springframework.context.annotation.Configuration;
 public class ApplicationConfig {
 
     @Bean
-    public ModelMapper modelMapper() {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.registerModule(new RecordModule());
-        return modelMapper;
+    public ObjectMapper objectMapper() {
+
+        return new ObjectMapper();
     }
 }
