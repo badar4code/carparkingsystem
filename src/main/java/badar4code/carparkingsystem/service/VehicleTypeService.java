@@ -48,7 +48,8 @@ public class VehicleTypeService extends BaseController {
             return responseHandler.badRequest("Code already exists!");
         }
         VehicleType vehicleType = genericMapper.map(dto, VehicleType.class);
-        vehicleTypeRepo.save(vehicleType);
-        return responseHandler.success(genericMapper.map(vehicleType, VehicleTypeDto.class), "Saved");
+        VehicleType saved = vehicleTypeRepo.save(vehicleType);
+        VehicleTypeDto vehicleTypeDto = genericMapper.map(saved, VehicleTypeDto.class);
+        return responseHandler.success(vehicleTypeDto, "Saved");
     }
 }

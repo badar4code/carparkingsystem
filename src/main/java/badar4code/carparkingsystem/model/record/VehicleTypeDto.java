@@ -1,10 +1,12 @@
 package badar4code.carparkingsystem.model.record;
 
+import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotBlank;
 
 import java.io.Serializable;
 
 public record VehicleTypeDto(
+        @Nullable
         Long id,
         String code,
         @NotBlank(message = "Name in Arabic is required")
